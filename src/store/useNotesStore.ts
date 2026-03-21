@@ -4,6 +4,7 @@ import type { Note } from '../domain/note';
 type State = {
   notes: Note[];
   createNote: (input?: Partial<Pick<Note, 'x' | 'y' | 'width' | 'height'>>) => void;
+  updateNote: (id: string, updater: (note: Note) => Note) => void;
 };
 
 export const useNotesStore = create<State>((set, get) => ({
@@ -26,6 +27,13 @@ export const useNotesStore = create<State>((set, get) => ({
 
     set((state) => {
       const newNotes = [...state.notes, newNote];
+      return { notes: newNotes };
+    });
+  },
+
+  updateNote: (id, updater) => {
+    set((state) => {
+      const newNotes = state.notes.map((n) => (n.id === id ? updater(n) : n));
       return { notes: newNotes };
     });
   },
