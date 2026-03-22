@@ -70,6 +70,17 @@ export const Note = ({ note }: { note: NoteType }) => {
         }}
       ></div>
 
+      <textarea
+        className="note-text"
+        value={note.text}
+        placeholder="Type here..."
+        onPointerDown={(e) => e.stopPropagation()}
+        onChange={(e) => {
+          const value = e.target.value;
+          updateNote(note.id, (n) => ({ ...n, text: value }));
+        }}
+      />
+
       <div
         className="resizer"
         onPointerDown={(e) => {
