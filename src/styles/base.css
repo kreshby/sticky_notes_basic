@@ -37,3 +37,26 @@ body {
 .note:active {
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
 }
+
+.resizer {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  width: 12px;
+  height: 12px;
+
+  background: transparent;
+  border-right: 2px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+
+  cursor: nwse-resize;
+  touch-action: none;
+  z-index: 1;
+
+  opacity: 0.5;
+  transition: opacity 0.15s;
+}
+
+.note:hover .resizer {
+  opacity: 1;
+}
